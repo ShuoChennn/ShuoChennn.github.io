@@ -1,0 +1,339 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>暑期实习｜蚂蚁后端一面：深入源码和操作系统 | ShuoChennn</title><meta name="keywords" content="面经"><meta name="author" content="ShuoChennn"><meta name="copyright" content="ShuoChennn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="暑期实习｜蚂蚁后端一面：深入源码和操作系统1.Java的聊天室是怎么做的？一个Java聊天室通常由两部分组成：服务器端和客户端。  服务器端（Server）：就像一个聊天室的控制中心。它会等待客户端的连接，并负责接收和发送消息。 客户端（Client）：就像聊天室的参与者。它会连接到服务器，并能够发送消息给服务器，同时接收其他客户端发送的消息。  在服务器端，我们使用一个专门的类叫做ServerS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="暑期实习｜蚂蚁后端一面：深入源码和操作系统">
+<meta property="og:url" content="http://example.com/post/a6f5b56e.html">
+<meta property="og:site_name" content="ShuoChennn">
+<meta property="og:description" content="暑期实习｜蚂蚁后端一面：深入源码和操作系统1.Java的聊天室是怎么做的？一个Java聊天室通常由两部分组成：服务器端和客户端。  服务器端（Server）：就像一个聊天室的控制中心。它会等待客户端的连接，并负责接收和发送消息。 客户端（Client）：就像聊天室的参与者。它会连接到服务器，并能够发送消息给服务器，同时接收其他客户端发送的消息。  在服务器端，我们使用一个专门的类叫做ServerS">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2024-03-25T09:42:44.000Z">
+<meta property="article:modified_time" content="2024-03-26T07:19:03.035Z">
+<meta property="article:author" content="ShuoChennn">
+<meta property="article:tag" content="面经">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/avatar.jpg"><link rel="canonical" href="http://example.com/post/a6f5b56e"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '暑期实习｜蚂蚁后端一面：深入源码和操作系统',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-26 15:19:03'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/tzy13755126023/BLOG_SOURCE/css/function.min.css"><meta name="generator" content="Hexo 6.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博客</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影评</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">ShuoChennn</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博客</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影评</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">暑期实习｜蚂蚁后端一面：深入源码和操作系统</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-25T09:42:44.000Z" title="发表于 2024-03-25 17:42:44">2024-03-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-26T07:19:03.035Z" title="更新于 2024-03-26 15:19:03">2024-03-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%A2%E7%BB%8F/">面经</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="暑期实习｜蚂蚁后端一面：深入源码和操作系统"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="暑期实习｜蚂蚁后端一面：深入源码和操作系统"><a href="#暑期实习｜蚂蚁后端一面：深入源码和操作系统" class="headerlink" title="暑期实习｜蚂蚁后端一面：深入源码和操作系统"></a>暑期实习｜蚂蚁后端一面：深入源码和操作系统</h1><h2 id="1-Java的聊天室是怎么做的？"><a href="#1-Java的聊天室是怎么做的？" class="headerlink" title="1.Java的聊天室是怎么做的？"></a>1.Java的聊天室是怎么做的？</h2><p>一个Java聊天室通常由两部分组成：服务器端和客户端。</p>
+<ol>
+<li><strong>服务器端（Server）</strong>：就像一个聊天室的控制中心。它会等待客户端的连接，并负责接收和发送消息。</li>
+<li><strong>客户端（Client）</strong>：就像聊天室的参与者。它会连接到服务器，并能够发送消息给服务器，同时接收其他客户端发送的消息。</li>
+</ol>
+<p>在服务器端，我们使用一个专门的类叫做<code>ServerSocket</code>来监听一个特定的端口。当客户端想要加入聊天室时，它们会尝试连接到服务器上的这个端口。一旦有客户端连接成功，服务器就会为它创建一个新的线程来处理它的请求。这个线程会不断地接收该客户端发送的消息，并处理它们。服务器可以将接收到的消息广播给所有连接到它的客户端。</p>
+<p>在客户端，我们使用普通的<code>Socket</code>来连接到服务器上的端口。一旦连接成功，客户端就可以通过这个Socket发送消息给服务器，并且也可以从服务器接收其他客户端发送的消息。这样，多个客户端就可以在服务器的协调下进行互相交流了。</p>
+<h2 id="2-工厂模式分成几种类型？"><a href="#2-工厂模式分成几种类型？" class="headerlink" title="2.工厂模式分成几种类型？"></a>2.工厂模式分成几种类型？</h2><p>工厂模式是一种创建型设计模式，用于封装对象的创建过程。根据实现方式和结构的不同，工厂模式可以分为三种主要类型：</p>
+<ol>
+<li><strong>简单工厂模式（Simple Factory Pattern）</strong>： 在简单工厂模式中，有一个专门的工厂类负责根据给定的参数来创建对象。客户端只需要知道要创建的对象的类型，而不需要知道创建对象的具体细节。简单工厂模式将对象的创建过程从客户端代码中解耦出来，使得客户端代码更加简洁。但是，简单工厂模式违反了开闭原则，因为每次新增加一个产品类都需要修改工厂类的代码。</li>
+<li><strong>工厂方法模式（Factory Method Pattern）</strong>： 工厂方法模式定义了一个抽象的工厂接口，其中包含一个用于创建对象的抽象方法。具体的产品类都实现这个接口，并提供自己的工厂类来创建自己的对象。这样每个产品类都有一个对应的工厂类，从而实现了对象的创建和具体产品类的解耦。工厂方法模式符合开闭原则，因为新增加一个产品类只需要添加一个相应的具体工厂类即可，不需要修改原有代码。</li>
+<li><strong>抽象工厂模式（Abstract Factory Pattern）</strong>： 抽象工厂模式提供了一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。抽象工厂模式通常由一个抽象工厂类和多个具体工厂类组成，每个具体工厂类负责创建一组相关的产品对象。抽象工厂模式将一组相关的产品对象的创建过程封装在一起，使得客户端可以通过一个接口来创建一整套产品对象。</li>
+</ol>
+<h2 id="3-用编译原理实现加减乘除"><a href="#3-用编译原理实现加减乘除" class="headerlink" title="3.用编译原理实现加减乘除"></a>3.用编译原理实现加减乘除</h2><p>要用编译原理实现加减乘除，你可以考虑以下步骤：</p>
+<ol>
+<li><strong>词法分析（Lexical Analysis）</strong>：将输入的表达式分解为一个个的词法单元（token），如运算符、操作数等。</li>
+<li><strong>语法分析（Syntax Analysis）</strong>：根据词法单元构建抽象语法树（Abstract Syntax Tree，AST），以表示表达式的结构。你可以使用递归下降解析器或者其他解析器来实现。</li>
+<li><strong>语义分析（Semantic Analysis）</strong>：对抽象语法树进行语义分析，确保表达式的合法性。例如，检查除数是否为零等错误。</li>
+<li><strong>生成中间代码（Intermediate Code Generation）</strong>：将抽象语法树转换为中间代码，例如逆波兰表达式（Reverse Polish Notation，RPN）。</li>
+<li><strong>解释执行或生成目标代码（Interpretation or Code Generation）</strong>：根据中间代码执行相应的操作，计算表达式的值。如果你想生成目标代码，可以进一步将中间代码转换为机器代码或者其他可执行的形式。</li>
+</ol>
+<h2 id="4-看过Spring的书吗，讲讲内容"><a href="#4-看过Spring的书吗，讲讲内容" class="headerlink" title="4.看过Spring的书吗，讲讲内容"></a>4.看过Spring的书吗，讲讲内容</h2><p>Spring是一个轻量级的Java开发框架，主要用于简化企业级应用开发。</p>
+<p>它提供了IOC（控制反转）和AOP（面向切面编程）的核心功能，用于管理对象之间的依赖关系和横切关注点。</p>
+<p>Spring还提供了数据访问、事务管理、Web应用开发等模块化的解决方案。</p>
+<h2 id="5-Linux分成哪些流"><a href="#5-Linux分成哪些流" class="headerlink" title="5.Linux分成哪些流"></a>5.Linux分成哪些流</h2><ol>
+<li><strong>标准输入流（stdin）</strong>： 标准输入流通常代表从键盘输入的数据。在命令行中，如果没有重定向输入，命令将默认从标准输入流中读取数据。在程序中，通常使用标准输入流来接收用户的输入。</li>
+<li><strong>标准输出流（stdout）</strong>： 标准输出流通常代表向屏幕输出的数据。在命令行中，如果没有重定向输出，命令将默认将输出写入到标准输出流中。在程序中，通常使用标准输出流来输出程序的结果和信息。</li>
+<li><strong>标准错误流（stderr）</strong>： 标准错误流用于输出错误消息和诊断信息。与标准输出流不同，标准错误流的内容不会被重定向到同一个地方，通常会将它们显示在屏幕上，这样可以使得错误消息更容易被用户注意到。</li>
+<li><strong>管道流（Pipes）</strong>： 管道流允许将一个命令的输出直接作为另一个命令的输入。在命令行中，可以使用竖线符号（|）来创建管道流。通过管道流，可以将多个命令串联起来，从而实现更复杂的数据处理操作。</li>
+<li><strong>文件流（File Streams）</strong>： 文件流是指通过文件进行输入输出的流。在Linux系统中，可以通过文件流来读取和写入文件中的数据。在命令行中，可以使用重定向符号（&lt;、&gt;、&gt;&gt;）来将命令的输入输出重定向到文件中。</li>
+</ol>
+<h2 id="6-加减幂怎么实现"><a href="#6-加减幂怎么实现" class="headerlink" title="6.加减幂怎么实现"></a>6.加减幂怎么实现</h2><h2 id="7-看过哪些源码，怎么实现的"><a href="#7-看过哪些源码，怎么实现的" class="headerlink" title="7.看过哪些源码，怎么实现的"></a>7.看过哪些源码，怎么实现的</h2><p>建议看看Java核心库、Spring框架、Linux内核、数据库系统等。</p>
+<h2 id="8-多核-CPU-改了一个-CPU-的内容，其他-CPU-怎么发现"><a href="#8-多核-CPU-改了一个-CPU-的内容，其他-CPU-怎么发现" class="headerlink" title="8.多核 CPU 改了一个 CPU 的内容，其他 CPU 怎么发现"></a>8.多核 CPU 改了一个 CPU 的内容，其他 CPU 怎么发现</h2><p>在多核CPU中，通常会存在一些机制来保证各个核心之间的一致性和同步。其中一个常见的机制是缓存一致性协议，比如MESI（Modified, Exclusive, Shared, Invalid）协议。</p>
+<p>在MESI协议中，每个缓存行都有四种状态：</p>
+<ul>
+<li>Modified（已修改）：表示缓存行已被当前核心修改，但尚未写回到内存。</li>
+<li>Exclusive（独占）：表示缓存行只存在于当前核心的缓存中，且未被修改。</li>
+<li>Shared（共享）：表示缓存行在多个核心的缓存中存在且相同，未被修改。</li>
+<li>Invalid（无效）：表示缓存行无效，不可用。</li>
+</ul>
+<p>当一个CPU修改了一个缓存行中的内容时，根据MESI协议，它会将该缓存行状态从Exclusive或Shared改为Modified，并且会向其他拥有相同缓存行的CPU发送信号，通知它们将该缓存行状态改为Invalid，从而保持一致性。</p>
+<p>因此，其他CPU会通过缓存一致性协议中的机制，如总线嗅探或者其他通信机制，检测到对应缓存行的状态发生了改变，并更新自己的缓存</p>
+<h2 id="9-WebSocket怎么实现的"><a href="#9-WebSocket怎么实现的" class="headerlink" title="9.WebSocket怎么实现的"></a>9.WebSocket怎么实现的</h2><p><code>WebSocket</code> 是一种在单个 TCP 连接上进行全双工通信的协议，允许在客户端和服务器之间进行实时数据传输。下面是 <code>WebSocket</code> 如何实现的简要概述：</p>
+<ol>
+<li><strong>建立握手（Handshake）</strong>： 客户端通过发送一个 HTTP 请求给服务器来请求建立 <code>WebSocket</code> 连接。该请求包含一些特殊的头部信息，如 <code>Upgrade: websocket</code> 和 <code>Connection: Upgrade</code>。服务器收到这个请求后，如果支持 <code>WebSocket</code>，就会响应一个 HTTP 101 状态码（Switching Protocols），表示协议切换成功，之后便进入了 <code>WebSocket</code> 协议的通信状态。</li>
+<li><strong>通信（Communication）</strong>： 建立了 <code>WebSocket</code> 连接之后，客户端和服务器就可以通过这个连接进行实时通信了。双方可以发送文本或二进制数据帧，这些帧会经过 <code>WebSocket</code> 协议封装和解封装。<code>WebSocket</code> 协议提供了一种轻量级的通信方式，使得客户端和服务器可以通过一个持久化的连接进行双向数据传输，而无需频繁地发起 HTTP 请求和响应。</li>
+<li><strong>保持连接（Keep-Alive）</strong>： <code>WebSocket</code> 连接是持久化的，因此在连接建立后，客户端和服务器之间的通信通常会保持活跃状态。双方可以定期发送心跳帧来确保连接的活性，同时也可以根据需要随时关闭连接。</li>
+<li><strong>关闭连接（Closing Connection）</strong>： 客户端或服务器可以通过发送一个特殊的关闭帧来关闭 <code>WebSocket</code> 连接。一旦收到关闭帧，另一方也会发送一个相应的关闭帧，并且立即关闭连接。</li>
+</ol>
+<p>总的来说，<code>WebSocket</code> 协议通过一次握手建立连接，之后就可以通过一个持久化的连接进行实时通信，这使得它成为了一种高效、轻量级的实时通信方案。</p>
+<h2 id="10-操作系统位数和CPU位数的关系"><a href="#10-操作系统位数和CPU位数的关系" class="headerlink" title="10.操作系统位数和CPU位数的关系"></a>10.操作系统位数和CPU位数的关系</h2><p>操作系统位数和 CPU 位数之间的关系通常体现在操作系统的兼容性和性能上。下面是它们之间的关系：</p>
+<ol>
+<li><strong>位数定义</strong>：<ul>
+<li>操作系统的位数指的是操作系统在处理地址时使用的位数，通常表示操作系统能够寻址的内存地址的位数。比如，64位操作系统可以寻址的内存地址范围更广，可以支持更大的内存空间。</li>
+<li>CPU 的位数指的是 CPU 寄存器的位数，通常表示 CPU 在一次指令操作中能够处理的数据位数。比如，64位 CPU 可以在一次指令操作中处理 64 位的数据。</li>
+</ul>
+</li>
+<li><strong>兼容性</strong>：<ul>
+<li>64位操作系统可以运行在 64位 CPU 上，也可以运行在 32位 CPU 上（在兼容模式下）。</li>
+<li>32位操作系统只能运行在 32位 CPU 上。</li>
+</ul>
+</li>
+<li><strong>性能</strong>：<ul>
+<li>当一个应用程序在与其匹配的操作系统和 CPU 上运行时，通常会有更好的性能，因为它可以利用 CPU 的所有功能。</li>
+<li>在相同的硬件上，64位操作系统通常能够更好地利用大于4GB的内存，提供更好的性能和更好的系统稳定性。</li>
+</ul>
+</li>
+</ol>
+<p>总的来说，操作系统位数和 CPU 位数之间的关系主要体现在兼容性和性能上。选择操作系统和 CPU 时，需要考虑它们之间的匹配关系，以获得最佳的性能和兼容性。</p>
+<h2 id="11-北向接口和南向接口-哪个存储缓存"><a href="#11-北向接口和南向接口-哪个存储缓存" class="headerlink" title="11.北向接口和南向接口 哪个存储缓存"></a>11.北向接口和南向接口 哪个存储缓存</h2><p>在计算机网络和系统架构中，”北向接口”和”南向接口”是两个常见的术语，它们指的是不同层次或方向上的接口。</p>
+<ol>
+<li><strong>北向接口（Northbound Interface）</strong>：<ul>
+<li>北向接口是指系统或组件向更高层次的系统或组件提供的接口。通常，这个更高层次的系统或组件是用户或应用程序。因此，北向接口是系统对外部世界的接口。</li>
+<li>在网络领域，北向接口通常指的是设备或系统向网络管理系统(NMS)或上层管理系统提供的接口，用于获取网络状态信息、配置网络设备等。</li>
+<li>在存储领域，北向接口可以指存储系统向上层应用程序提供的接口，用于访问存储资源、管理存储策略等。</li>
+</ul>
+</li>
+<li><strong>南向接口（Southbound Interface）</strong>：<ul>
+<li>南向接口是指系统或组件向更低层次的系统或组件提供的接口。通常，这个更低层次的系统或组件是硬件、底层服务或操作系统。</li>
+<li>在网络领域，南向接口通常指的是设备向底层网络设备(如交换机、路由器)提供的接口，用于配置、管理和监控设备的硬件和软件参数。</li>
+<li>在存储领域，南向接口可以指存储系统向底层存储设备(如硬盘、固态硬盘)或存储控制器提供的接口，用于数据的读写、存储管理等。</li>
+</ul>
+</li>
+</ol>
+<h2 id="12-操作系统底层原理"><a href="#12-操作系统底层原理" class="headerlink" title="12.操作系统底层原理"></a>12.操作系统底层原理</h2><p>操作系统底层原理涉及多个方面，包括操作系统的架构、调度算法、内存管理、文件系统、设备管理等。以下是操作系统底层原理的一些主要内容：</p>
+<ol>
+<li><strong>内核与用户空间</strong>： 操作系统通常由内核和用户空间组成。内核是操作系统的核心部分，负责管理系统的资源和提供系统调用接口；而用户空间是操作系统提供给应用程序的环境，应用程序在用户空间运行，通过系统调用接口访问内核功能。</li>
+<li><strong>进程管理</strong>： 操作系统通过进程管理来实现多任务处理。进程是程序的执行实例，操作系统负责创建、调度、终止和管理进程。进程调度算法决定了进程如何分配CPU时间，常见的调度算法包括先来先服务（FCFS）、短作业优先（SJF）、时间片轮转等。</li>
+<li><strong>内存管理</strong>： 内存管理是操作系统管理系统内存的过程，包括内存分配、地址映射、内存保护和内存回收等。内存管理的主要目标是提高内存利用率、减少内存碎片、保护进程的地址空间等。</li>
+<li><strong>文件系统</strong>： 文件系统是操作系统管理存储设备上文件和目录的方式。文件系统负责文件的存储、组织、访问和管理。常见的文件系统包括FAT、NTFS、EXT等。</li>
+<li><strong>设备管理</strong>： 设备管理是操作系统管理计算机硬件设备的过程，包括设备驱动程序的加载、设备的初始化、设备的控制和数据传输等。操作系统通过设备管理层抽象出统一的设备接口，使得应用程序可以统一地访问各种硬件设备。</li>
+<li><strong>中断处理</strong>： 中断是指硬件或软件发出的信号，用于通知操作系统发生了某种事件。操作系统通过中断处理程序来响应中断，并根据中断类型执行相应的处理操作。</li>
+</ol>
+<p>这些底层原理共同构成了操作系统的核心功能和特性，对于理解操作系统的工作原理和实现具有重要意义。</p>
+<h2 id="13-操作系统什么场景使用多线程，怎么设置"><a href="#13-操作系统什么场景使用多线程，怎么设置" class="headerlink" title="13.操作系统什么场景使用多线程，怎么设置"></a>13.操作系统什么场景使用多线程，怎么设置</h2><p>多线程在操作系统中的应用场景非常广泛，主要包括以下几个方面：</p>
+<ol>
+<li><strong>并发处理</strong>：多线程可以用于同时处理多个任务，提高系统的并发性能。例如，在服务器端应用中，可以使用多线程来处理多个客户端的请求，实现并发访问。</li>
+<li><strong>异步编程</strong>：多线程可以用于实现异步编程模型，提高系统的响应速度。例如，在图形界面(GUI)应用中，可以使用多线程来处理用户界面的事件，保持界面的响应性。</li>
+<li><strong>并行计算</strong>：多线程可以用于利用多核CPU的并行计算能力，提高计算性能。例如，在科学计算、图像处理等领域，可以使用多线程并行处理大规模数据。</li>
+<li><strong>资源共享</strong>：多线程可以用于实现共享资源的并发访问和管理。例如，在数据库系统中，可以使用多线程来处理对共享数据库的查询和更新操作。</li>
+</ol>
+<p>要设置多线程，通常需要以下步骤：</p>
+<ol>
+<li><strong>创建线程</strong>：在程序中创建多个线程，可以使用操作系统提供的线程库或编程语言提供的线程支持。例如，在 Java 中可以使用 Thread 类或 Runnable 接口创建线程。</li>
+<li><strong>线程调度</strong>：操作系统负责对线程进行调度和管理，以确保它们能够按照预期的方式运行。线程调度器会根据线程的优先级、状态等因素来确定线程的执行顺序。</li>
+<li><strong>线程同步</strong>：在多线程环境中，可能会出现共享资源的并发访问问题，需要使用同步机制来确保多个线程之间的数据一致性和互斥访问。常见的同步机制包括锁、信号量、条件变量等。</li>
+<li><strong>异常处理</strong>：在多线程程序中，可能会出现线程抛出异常而导致程序异常终止的情况，需要对异常进行适当的处理和捕获，以确保程序的稳定性和可靠性。</li>
+</ol>
+<p>通过合理地设置多线程，可以充分利用多核CPU的计算能力，提高系统的性能和响应速度，同时也需要注意处理多线程并发访问和同步的问题，以确保程序的正确性和稳定性。</p>
+<h2 id="14-BeanFactory怎么做的，看过源码吗"><a href="#14-BeanFactory怎么做的，看过源码吗" class="headerlink" title="14.BeanFactory怎么做的，看过源码吗"></a>14.BeanFactory怎么做的，看过源码吗</h2><p><code>BeanFactory</code> 是 Spring 框架中的一个核心接口，用于管理和控制 Bean 对象的创建、生命周期管理等。<code>BeanFactory</code> 提供了一种解耦合的方式来管理应用程序中的对象依赖关系。</p>
+<p><code>BeanFactory</code> 的主要功能包括：</p>
+<ul>
+<li>实例化 Bean：根据配置文件或注解，实例化应用程序中的各种 Bean 对象。</li>
+<li>Bean 生命周期管理：管理 Bean 对象的生命周期，包括初始化、销毁等。</li>
+<li>Bean 的依赖注入：处理 Bean 对象之间的依赖关系，实现依赖注入。</li>
+</ul>
+<p>在 Spring 框架中，<code>BeanFactory</code> 接口有多个实现类，其中最常用的是 <code>ApplicationContext</code> 接口的实现类。<code>ApplicationContext</code> 是 <code>BeanFactory</code> 的一个子接口，提供了更丰富的功能和更便捷的用法，通常也是更推荐使用的。</p>
+<p>针对 <code>BeanFactory</code> 的具体实现，Spring 使用了反射机制、配置解析和依赖注入等技术来实现。具体来说，Spring 会通过解析配置文件（如 XML 文件）或扫描注解来获取 Bean 的定义和依赖关系，然后通过反射机制实例化 Bean 对象，并通过依赖注入来处理 Bean 之间的依赖关系。Spring 还会管理 Bean 的生命周期，执行初始化和销毁操作。</p>
+<p>要深入了解 <code>BeanFactory</code> 的实现原理，可以阅读 Spring 框架的源代码。Spring 框架是一个开源项目，其源代码可以在其官方网站或 GitHub 上找到并下载。通过阅读源代码，可以更深入地理解 Spring 框架的设计思想和实现方式。</p>
+<h2 id="15-ThreadLocal源码"><a href="#15-ThreadLocal源码" class="headerlink" title="15.ThreadLocal源码"></a>15.ThreadLocal源码</h2><p><code>ThreadLocal</code> 的源码主要实现了线程局部变量的功能。它提供了一种让每个线程都可以独立地维护自己的变量副本的机制。通过 <code>ThreadLocal</code>，我们可以在多线程环境下安全地存储和访问线程私有数据。下面是 <code>ThreadLocal</code> 的简要源码剖析以及它的实现原理：</p>
+<ol>
+<li><strong>ThreadLocal 类定义</strong>： <code>ThreadLocal</code> 类定义了一个静态内部类 <code>ThreadLocalMap</code>，用于存储线程局部变量的值。<code>ThreadLocal</code> 实例本身是一个线程安全的类。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">javaCopy codepublic <span class="keyword">class</span> <span class="title class_">ThreadLocal</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="comment">// 省略部分代码...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取当前线程的变量值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> T <span class="title function_">get</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">t</span> <span class="operator">=</span> Thread.currentThread();</span><br><span class="line">        <span class="type">ThreadLocalMap</span> <span class="variable">map</span> <span class="operator">=</span> getMap(t);</span><br><span class="line">        <span class="keyword">if</span> (map != <span class="literal">null</span>) &#123;</span><br><span class="line">            ThreadLocalMap.<span class="type">Entry</span> <span class="variable">e</span> <span class="operator">=</span> map.getEntry(<span class="built_in">this</span>);</span><br><span class="line">            <span class="keyword">if</span> (e != <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">                <span class="type">T</span> <span class="variable">result</span> <span class="operator">=</span> (T)e.value;</span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> setInitialValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 省略部分代码...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设置当前线程的变量值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">set</span><span class="params">(T value)</span> &#123;</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">t</span> <span class="operator">=</span> Thread.currentThread();</span><br><span class="line">        <span class="type">ThreadLocalMap</span> <span class="variable">map</span> <span class="operator">=</span> getMap(t);</span><br><span class="line">        <span class="keyword">if</span> (map != <span class="literal">null</span>)</span><br><span class="line">            map.set(<span class="built_in">this</span>, value);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            createMap(t, value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 省略部分代码...</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><strong>ThreadLocalMap 类定义</strong>： <code>ThreadLocalMap</code> 是 <code>ThreadLocal</code> 的静态内部类，用于实际存储线程局部变量的值。它是一个自定义的散列表，以 <code>ThreadLocal</code> 实例作为键，存储对应的值。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">javaCopy codestatic <span class="keyword">class</span> <span class="title class_">ThreadLocalMap</span> &#123;</span><br><span class="line">    <span class="comment">// 省略部分代码...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取当前 ThreadLocal 实例在当前线程中的变量值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    Entry <span class="title function_">getEntry</span><span class="params">(ThreadLocal&lt;?&gt; key)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> key.threadLocalHashCode &amp; (table.length - <span class="number">1</span>);</span><br><span class="line">        <span class="type">Entry</span> <span class="variable">e</span> <span class="operator">=</span> table[i];</span><br><span class="line">        <span class="keyword">if</span> (e != <span class="literal">null</span> &amp;&amp; e.get() == key)</span><br><span class="line">            <span class="keyword">return</span> e;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> getEntryAfterMiss(key, i, e);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将当前 ThreadLocal 实例和对应的变量值存储到当前线程的 ThreadLocalMap 中</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">set</span><span class="params">(ThreadLocal&lt;?&gt; key, Object value)</span> &#123;</span><br><span class="line">        <span class="comment">// 省略部分代码...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 省略部分代码...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Entry</span> <span class="keyword">extends</span> <span class="title class_">WeakReference</span>&lt;ThreadLocal&lt;?&gt;&gt; &#123;</span><br><span class="line">        Object value;</span><br><span class="line"></span><br><span class="line">        Entry(ThreadLocal&lt;?&gt; k, Object v) &#123;</span><br><span class="line">            <span class="built_in">super</span>(k);</span><br><span class="line">            value = v;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现原理:</p>
+<ul>
+<li>每个 <code>ThreadLocal</code> 实例都有一个唯一的 <code>ThreadLocalHashCode</code>，用于在 <code>ThreadLocalMap</code> 中定位对应的值。</li>
+<li>当调用 <code>ThreadLocal</code> 的 get 方法时，会先获取当前线程的 <code>ThreadLocalMap</code>，然后根据 <code>ThreadLocal</code> 实例定位到对应的 Entry，从而获取变量值。</li>
+<li>当调用 <code>ThreadLocal</code> 的 set 方法时，会先获取当前线程的 <code>ThreadLocalMap</code>，然后将 <code>ThreadLocal</code> 实例和对应的值存储到 <code>ThreadLocalMap</code> 中。</li>
+</ul>
+<p><code>ThreadLocal</code> 的实现原理简单地通过每个线程都维护一个 <code>ThreadLocalMap</code>，然后根据 <code>ThreadLocal</code> 实例将变量值存储到对应的 Entry 中，从而实现了每个线程都拥有自己独立的变量副本的机制。值得注意的是，由于 <code>ThreadLocalMap</code> 中的 Entry 引用了 <code>ThreadLocal</code> 实例，如果 <code>ThreadLocal</code> 实例不再被使用，但对应的线程仍然存在，则可能会导致内存泄漏，因此在使用 <code>ThreadLocal</code> 时需要谨慎管理。</p>
+<h2 id="16-Future除了接受异步任务结果，还能干嘛"><a href="#16-Future除了接受异步任务结果，还能干嘛" class="headerlink" title="16.Future除了接受异步任务结果，还能干嘛"></a>16.Future除了接受异步任务结果，还能干嘛</h2><p>Future 是 Java 并发编程中用于表示异步计算结果的接口。除了可以获取异步任务的结果，Future 还提供了<strong>判断任务是否完成</strong>、<strong>阻塞等待任务完成</strong>、<strong>异常处理</strong>以及<strong>取消任务</strong>等方法。这使我们能够更灵活地控制异步任务的执行和结果处理。</p>
+<h2 id="17-Fork-x2F-Join与普通的线程池有什么区别？"><a href="#17-Fork-x2F-Join与普通的线程池有什么区别？" class="headerlink" title="17.Fork&#x2F;Join与普通的线程池有什么区别？"></a>17.Fork&#x2F;Join与普通的线程池有什么区别？</h2><ol>
+<li><strong>任务分割与合并</strong>：<ul>
+<li>Fork&#x2F;Join 框架主要用于处理可分解的任务，它将一个大任务分割成多个小任务，然后将这些小任务分配给多个线程执行，并最终将各个小任务的结果合并起来得到最终结果。这种任务的分割和合并是 Fork&#x2F;Join 框架的核心特性。</li>
+<li>普通的线程池则主要用于处理独立的任务，它将任务提交给线程池后，由线程池中的线程按照指定的策略执行任务，但不会对任务进行分割和合并操作。</li>
+</ul>
+</li>
+<li><strong>工作窃取算法</strong>：<ul>
+<li>Fork&#x2F;Join 框架使用工作窃取算法（Work-Stealing Algorithm）来提高线程利用率和任务执行效率。在 Fork&#x2F;Join 框架中，每个线程都有自己的工作队列，当一个线程执行完自己队列中的任务后，会去其他线程的队列中“窃取”任务来执行，以保持线程的忙碌状态，提高整个系统的并行度。</li>
+<li>而普通的线程池中，每个线程都是从线程池的任务队列中获取任务来执行，不存在工作窃取的概念。</li>
+</ul>
+</li>
+<li><strong>任务类型</strong>：<ul>
+<li>Fork&#x2F;Join 框架更适合处理递归、可分解的任务，如归并排序、快速排序、斐波那契数列等。这些任务可以被分割成多个子任务，并行执行，最后合并结果。</li>
+<li>普通的线程池更适合处理独立的、相互不依赖的任务，如网络请求、IO操作等。</li>
+</ul>
+</li>
+</ol>
+<p>总的来说，Fork&#x2F;Join 框架相比普通的线程池在任务的分割与合并、工作窃取算法和适用任务类型等方面有着不同的设计思路和应用场景。</p>
+<h2 id="18-ConcurrentHashMap源码"><a href="#18-ConcurrentHashMap源码" class="headerlink" title="18.ConcurrentHashMap源码"></a>18.ConcurrentHashMap源码</h2><p><code>ConcurrentHashMap</code> 是 Java 中用于多线程环境下安全地进行并发访问的哈希表实现。它提供了线程安全的并发操作，同时也提供了比 <code>Hashtable</code> 和同步的 <code>HashMap</code> 更高的性能。</p>
+<p><code>ConcurrentHashMap</code> 的主要特点和实现包括：</p>
+<ol>
+<li><strong>线程安全</strong>： <code>ConcurrentHashMap</code> 提供了对并发访问的支持，多个线程可以同时对 <code>ConcurrentHashMap</code> 进行读取和部分写入操作，而不会出现数据不一致的情况。它采用了分段锁的方式来提高并发性能。</li>
+<li><strong>分段锁</strong>： <code>ConcurrentHashMap</code> 内部维护了一定数量的 Segment（段），每个 Segment 就是一个类似于 <code>HashMap</code> 的哈希表，它独立于其他 Segment，拥有自己的锁。这样，在并发访问时，只有对应的 Segment 被加锁，其他 Segment 不受影响，从而减少了锁的竞争，提高了并发性能。</li>
+<li><strong>高性能</strong>： <code>ConcurrentHashMap</code> 的分段锁设计使得多个线程可以并行地对不同的 Segment 进行操作，从而提高了并发性能。而且，在读操作上不会阻塞，多个线程可以同时读取数据，只有在写操作时才需要进行锁的竞争。</li>
+<li><strong>调整容量</strong>： <code>ConcurrentHashMap</code> 在容量达到一定阈值时会自动扩容，而且在扩容时不会阻塞其他线程的读操作，只会影响到写操作的性能。它采用了一种称为 “分段锁扩容” 的策略，即只会对扩容的那个 Segment 进行加锁，其他 Segment 不受影响。</li>
+<li><strong>迭代安全</strong>： <code>ConcurrentHashMap</code> 在迭代时也是安全的，即使在迭代过程中有其他线程对 <code>ConcurrentHashMap</code> 进行修改，也不会抛出 <code>ConcurrentModificationException</code> 异常。这是因为 <code>ConcurrentHashMap</code> 在内部采用了一种称为 “快速失败迭代器” 的机制，它在迭代过程中使用了一些技巧来确保迭代的一致性和安全性。</li>
+</ol>
+<p><code>ConcurrentHashMap</code> 实现了在多线程环境下安全地进行并发访问的哈希表，并通过分段锁等机制提高了并发性能，同时也提供了高性能的读操作、自动扩容、迭代安全等特性。</p>
+<h2 id="19-String源码怎么设计的，与操作系统相关联的设计"><a href="#19-String源码怎么设计的，与操作系统相关联的设计" class="headerlink" title="19.String源码怎么设计的，与操作系统相关联的设计"></a>19.String源码怎么设计的，与操作系统相关联的设计</h2><p><code>String</code> 类在 Java 中是一个不可变的类，它表示字符串对象。在 Java 中，字符串是一种常见的数据类型，<code>String</code> 类提供了许多方法来操作字符串。<code>String</code> 类的设计与操作系统的设计没有直接关联，因为它是 Java 语言中的一个标准库类，而不是操作系统的一部分。</p>
+<h2 id="20-基于Socket设计了哪些系统？怎么实现的"><a href="#20-基于Socket设计了哪些系统？怎么实现的" class="headerlink" title="20.基于Socket设计了哪些系统？怎么实现的"></a>20.基于Socket设计了哪些系统？怎么实现的</h2><p>基于 Socket 可以设计各种类型的系统，包括但不限于：</p>
+<ol>
+<li><strong>网络通信系统</strong>： 可以设计各种类型的网络通信系统，包括即时通讯系统、聊天应用、在线游戏、远程控制系统等。通过 Socket 建立客户端与服务器之间的通信连接，实现数据的双向传输。</li>
+<li><strong>文件传输系统</strong>： 可以设计文件传输系统，用于在客户端和服务器之间传输文件。通过 Socket 实现客户端和服务器之间的文件传输，包括上传、下载、文件共享等功能。</li>
+<li><strong>远程监控和控制系统</strong>： 可以设计远程监控和控制系统，用于监控和控制远程设备或系统。通过 Socket 建立客户端与监控设备或控制中心之间的连接，实现数据的实时监控和远程控制。</li>
+<li><strong>分布式计算系统</strong>： 可以设计分布式计算系统，用于将计算任务分发到多台计算节点上进行并行计算。通过 Socket 实现计算节点之间的通信和数据交换，协调各个计算节点的工作。</li>
+<li><strong>远程调用系统</strong>： 可以设计远程调用系统，用于实现跨网络的方法调用和远程服务调用。通过 Socket 建立客户端和服务端之间的连接，实现客户端对服务端方法的调用和数据传输。</li>
+</ol>
+<p>实现这些系统时，通常需要考虑以下几个方面：</p>
+<ul>
+<li><strong>通信协议的设计</strong>：定义通信协议，包括数据格式、消息格式、通信方式等。</li>
+<li><strong>Socket 编程</strong>：使用 Java、Python、C++ 等编程语言进行 Socket 编程，实现客户端和服务器之间的通信连接。</li>
+<li><strong>并发处理</strong>：处理多个客户端同时连接的情况，采用多线程、线程池等技术实现并发处理。</li>
+<li><strong>安全性和可靠性</strong>：考虑数据的安全传输和通信的可靠性，采用加密算法、认证机制、重传机制等保障通信的安全性和可靠性。</li>
+</ul>
+<p>这些系统通过 Socket 进行网络通信，实现数据的发送和接收。具体的实现方式会根据系统的需求和架构而有所不同，但通常包括创建 <code>ServerSocket</code> 监听端口、建立 Socket 连接、发送和接收数据等步骤。</p>
+<h2 id="21-除了Java还会哪些语言吗？"><a href="#21-除了Java还会哪些语言吗？" class="headerlink" title="21.除了Java还会哪些语言吗？"></a>21.除了Java还会哪些语言吗？</h2></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">ShuoChennn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/post/a6f5b56e.html">http://example.com/post/a6f5b56e.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">ShuoChennn</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%9D%A2%E7%BB%8F/">面经</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/post/54ae0472.html"><img class="next-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">深度学习入门</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ShuoChennn</div><div class="author-info__description">秋刀鱼也会过期</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客，还在完善！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9A%91%E6%9C%9F%E5%AE%9E%E4%B9%A0%EF%BD%9C%E8%9A%82%E8%9A%81%E5%90%8E%E7%AB%AF%E4%B8%80%E9%9D%A2%EF%BC%9A%E6%B7%B1%E5%85%A5%E6%BA%90%E7%A0%81%E5%92%8C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.</span> <span class="toc-text">暑期实习｜蚂蚁后端一面：深入源码和操作系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Java%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AE%A4%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E7%9A%84%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">1.Java的聊天室是怎么做的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E5%88%86%E6%88%90%E5%87%A0%E7%A7%8D%E7%B1%BB%E5%9E%8B%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">2.工厂模式分成几种类型？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%94%A8%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4"><span class="toc-number">1.3.</span> <span class="toc-text">3.用编译原理实现加减乘除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%9C%8B%E8%BF%87Spring%E7%9A%84%E4%B9%A6%E5%90%97%EF%BC%8C%E8%AE%B2%E8%AE%B2%E5%86%85%E5%AE%B9"><span class="toc-number">1.4.</span> <span class="toc-text">4.看过Spring的书吗，讲讲内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Linux%E5%88%86%E6%88%90%E5%93%AA%E4%BA%9B%E6%B5%81"><span class="toc-number">1.5.</span> <span class="toc-text">5.Linux分成哪些流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%8A%A0%E5%87%8F%E5%B9%82%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.6.</span> <span class="toc-text">6.加减幂怎么实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E7%9C%8B%E8%BF%87%E5%93%AA%E4%BA%9B%E6%BA%90%E7%A0%81%EF%BC%8C%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84"><span class="toc-number">1.7.</span> <span class="toc-text">7.看过哪些源码，怎么实现的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%A4%9A%E6%A0%B8-CPU-%E6%94%B9%E4%BA%86%E4%B8%80%E4%B8%AA-CPU-%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%8C%E5%85%B6%E4%BB%96-CPU-%E6%80%8E%E4%B9%88%E5%8F%91%E7%8E%B0"><span class="toc-number">1.8.</span> <span class="toc-text">8.多核 CPU 改了一个 CPU 的内容，其他 CPU 怎么发现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-WebSocket%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84"><span class="toc-number">1.9.</span> <span class="toc-text">9.WebSocket怎么实现的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%8D%E6%95%B0%E5%92%8CCPU%E4%BD%8D%E6%95%B0%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.10.</span> <span class="toc-text">10.操作系统位数和CPU位数的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E5%8C%97%E5%90%91%E6%8E%A5%E5%8F%A3%E5%92%8C%E5%8D%97%E5%90%91%E6%8E%A5%E5%8F%A3-%E5%93%AA%E4%B8%AA%E5%AD%98%E5%82%A8%E7%BC%93%E5%AD%98"><span class="toc-number">1.11.</span> <span class="toc-text">11.北向接口和南向接口 哪个存储缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86"><span class="toc-number">1.12.</span> <span class="toc-text">12.操作系统底层原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BB%80%E4%B9%88%E5%9C%BA%E6%99%AF%E4%BD%BF%E7%94%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%8C%E6%80%8E%E4%B9%88%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.13.</span> <span class="toc-text">13.操作系统什么场景使用多线程，怎么设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-BeanFactory%E6%80%8E%E4%B9%88%E5%81%9A%E7%9A%84%EF%BC%8C%E7%9C%8B%E8%BF%87%E6%BA%90%E7%A0%81%E5%90%97"><span class="toc-number">1.14.</span> <span class="toc-text">14.BeanFactory怎么做的，看过源码吗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-ThreadLocal%E6%BA%90%E7%A0%81"><span class="toc-number">1.15.</span> <span class="toc-text">15.ThreadLocal源码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-Future%E9%99%A4%E4%BA%86%E6%8E%A5%E5%8F%97%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E7%BB%93%E6%9E%9C%EF%BC%8C%E8%BF%98%E8%83%BD%E5%B9%B2%E5%98%9B"><span class="toc-number">1.16.</span> <span class="toc-text">16.Future除了接受异步任务结果，还能干嘛</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-Fork-x2F-Join%E4%B8%8E%E6%99%AE%E9%80%9A%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">1.17.</span> <span class="toc-text">17.Fork&#x2F;Join与普通的线程池有什么区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-ConcurrentHashMap%E6%BA%90%E7%A0%81"><span class="toc-number">1.18.</span> <span class="toc-text">18.ConcurrentHashMap源码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-String%E6%BA%90%E7%A0%81%E6%80%8E%E4%B9%88%E8%AE%BE%E8%AE%A1%E7%9A%84%EF%BC%8C%E4%B8%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3%E8%81%94%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.19.</span> <span class="toc-text">19.String源码怎么设计的，与操作系统相关联的设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-%E5%9F%BA%E4%BA%8ESocket%E8%AE%BE%E8%AE%A1%E4%BA%86%E5%93%AA%E4%BA%9B%E7%B3%BB%E7%BB%9F%EF%BC%9F%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84"><span class="toc-number">1.20.</span> <span class="toc-text">20.基于Socket设计了哪些系统？怎么实现的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-%E9%99%A4%E4%BA%86Java%E8%BF%98%E4%BC%9A%E5%93%AA%E4%BA%9B%E8%AF%AD%E8%A8%80%E5%90%97%EF%BC%9F"><span class="toc-number">1.21.</span> <span class="toc-text">21.除了Java还会哪些语言吗？</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/a6f5b56e.html" title="暑期实习｜蚂蚁后端一面：深入源码和操作系统"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="暑期实习｜蚂蚁后端一面：深入源码和操作系统"/></a><div class="content"><a class="title" href="/post/a6f5b56e.html" title="暑期实习｜蚂蚁后端一面：深入源码和操作系统">暑期实习｜蚂蚁后端一面：深入源码和操作系统</a><time datetime="2024-03-25T09:42:44.000Z" title="发表于 2024-03-25 17:42:44">2024-03-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/54ae0472.html" title="深度学习入门"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="深度学习入门"/></a><div class="content"><a class="title" href="/post/54ae0472.html" title="深度学习入门">深度学习入门</a><time datetime="2022-07-19T19:05:17.500Z" title="发表于 2022-07-20 03:05:17">2022-07-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/7f3b056.html" title="Mysql学习笔记"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mysql学习笔记"/></a><div class="content"><a class="title" href="/post/7f3b056.html" title="Mysql学习笔记">Mysql学习笔记</a><time datetime="2022-07-19T15:54:33.809Z" title="发表于 2022-07-19 23:54:33">2022-07-19</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By ShuoChennn</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script async src="https://npm.elemecdn.com/tzy-blog/lib/js/other/sakura.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="富强,民主,文明,和谐,自由,平等,公正,法制,爱国,敬业,诚信,友善" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
