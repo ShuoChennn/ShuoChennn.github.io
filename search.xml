@@ -4,13 +4,27 @@
   
     
     <entry>
-      <title></title>
-      <link href="/post/0.html"/>
-      <url>/post/0.html</url>
+      <title>Vue3学习笔记 by小满zs</title>
+      <link href="/post/5b83159.html"/>
+      <url>/post/5b83159.html</url>
       
-        <content type="html"><![CDATA[<h3 id="一、环境搭建"><a href="#一、环境搭建" class="headerlink" title="一、环境搭建"></a>一、环境搭建</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm init vite@latest // 初始化项目</span><br><span class="line">npm install // or npm i 下载相关依赖，生成node_modules</span><br><span class="line">npm run dev // 启动项目</span><br><span class="line">npm init vue@latest //初始化项目，配置更全面</span><br></pre></td></tr></table></figure><p><strong>node.js 源码</strong></p><p>v8、libnv和第三方库构成</p><h3 id="二、认识目录-amp-SFC-amp-插件"><a href="#二、认识目录-amp-SFC-amp-插件" class="headerlink" title="二、认识目录 &amp; SFC &amp; 插件"></a>二、认识目录 &amp; SFC &amp; 插件</h3><p><strong>认识目录</strong></p><ol><li>pubilc：静态资源，不会被vite编译</li><li>src<ol><li>assets：较小静态资源，打包成base64，</li><li>components</li><li>App.vue：全局入口文件</li><li>main.ts：全局TS文件，全局的样式、API</li><li>vite.env.d.ts：声明文件扩充</li></ol></li><li>index.html</li><li>package.json：依赖</li><li>tsconfig.json：是TS配置文件</li><li>vite.config.ts：是vite配置文件</li></ol><p><strong>SFC</strong></p><ol><li>script：变量</li><li>template：标签</li><li>style：样式</li></ol><p><strong>插件</strong></p><ol><li>volar</li><li>Vue Language Feature</li></ol><p><strong><code>npm run dev</code>过程</strong></p><ol><li>package.json -&gt; script -&gt; dev -&gt; vite</li><li>node_modules -&gt; vite -&gt; bin</li></ol><h3 id="三、模板语法-amp-Vue指令"><a href="#三、模板语法-amp-Vue指令" class="headerlink" title="三、模板语法 &amp; Vue指令"></a>三、模板语法 &amp; Vue指令</h3><ol><li><p>vue2：option api</p></li><li><p>vue3：setup函数模式</p><ol><li><p>setup</p><p>1. </p></li><li><p>setup语法糖</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></li></ol></li></ol><p><strong>Vue指令</strong></p><p>v- 开头都是 vue 的指令</p><ol><li><p>v-text 用来显示文本</p></li><li><p>v-html 用来展示富文本</p></li><li><p>v-if 用来控制元素的显示隐藏（切换真假DOM）</p></li><li><p>v-else-if 表示 v-if 的“else if 块”。可以链式调用</p></li><li><p>v-else v-if条件收尾语句</p></li><li><p>v-show 用来控制元素的显示隐藏（display none block Css切换）</p></li><li><p>v-on 简写@ 用来给元素添加事件</p></li><li><p>v-bind 简写:  用来绑定元素的属性Attr</p></li><li><p>v-model 双向绑定</p></li><li><p>v-for 用来遍历元素</p></li><li><p>v-on修饰符 冒泡案例</p></li><li><p>v-once 性能优化只渲染一次</p></li></ol>]]></content>
+        <content type="html"><![CDATA[<h3 id="一、环境搭建"><a href="#一、环境搭建" class="headerlink" title="一、环境搭建"></a>一、环境搭建</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm init vite@latest // 初始化项目</span><br><span class="line">npm install // or npm i 下载相关依赖，生成node_modules</span><br><span class="line">npm run dev // 启动项目</span><br><span class="line">npm init vue@latest //初始化项目，配置更全面</span><br></pre></td></tr></table></figure><p><strong>node.js 源码</strong></p><p>v8、libnv和第三方库构成</p><h3 id="二、认识目录-amp-SFC-amp-插件"><a href="#二、认识目录-amp-SFC-amp-插件" class="headerlink" title="二、认识目录 &amp; SFC &amp; 插件"></a>二、认识目录 &amp; SFC &amp; 插件</h3><p><strong>认识目录</strong></p><ol><li>pubilc：静态资源，不会被vite编译</li><li>src<ol><li>assets：较小静态资源，打包成base64，</li><li>components</li><li>App.vue：全局入口文件</li><li>main.ts：全局TS文件，全局的样式、API</li><li>vite.env.d.ts：声明文件扩充</li></ol></li><li>index.html</li><li>package.json：依赖</li><li>tsconfig.json：是TS配置文件</li><li>vite.config.ts：是vite配置文件</li></ol><p><strong>SFC</strong></p><ol><li>script：变量</li><li>template：标签</li><li>style：样式</li></ol><p><strong>插件</strong></p><ol><li>volar</li><li>Vue Language Feature</li></ol><p><strong><code>npm run dev</code>过程</strong></p><ol><li>package.json -&gt; script -&gt; dev -&gt; vite</li><li>node_modules -&gt; vite -&gt; bin</li></ol><h3 id="三、模板语法-amp-Vue指令"><a href="#三、模板语法-amp-Vue指令" class="headerlink" title="三、模板语法 &amp; Vue指令"></a>三、模板语法 &amp; Vue指令</h3><ol><li><p>vue2：option api</p></li><li><p>vue3：setup函数模式</p><ol><li><p>setup</p></li><li><p>setup语法糖</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></li></ol></li></ol><p><strong>Vue指令</strong></p><p><code>v-</code> 开头都是 <code>vue</code> 的指令</p><ol><li>v-text 用来显示文本</li><li>v-html 用来展示富文本</li><li>v-if 用来控制元素的显示隐藏（切换真假DOM）</li><li>v-else-if 表示 v-if 的“else if 块”。可以链式调用</li><li>v-else v-if条件收尾语句</li><li>v-show 用来控制元素的显示隐藏（display none block Css切换）</li><li>v-on 简写**@** 用来给元素添加事件</li><li>v-bind 简写**:** 用来绑定元素的属性Attr</li><li>v-model 双向绑定 一般用于绑定表单</li><li>v-for 用来遍历元素</li><li>v-on修饰符 冒泡案例</li><li>v-once 性能优化只渲染一次（性能优化）</li><li>v-memo 性能优化会有缓存，状态未发生改变就只渲染一次（小部分提升性能）</li></ol><h3 id="四、Vue核心虚拟Dom和diff算法"><a href="#四、Vue核心虚拟Dom和diff算法" class="headerlink" title="四、Vue核心虚拟Dom和diff算法"></a>四、Vue核心虚拟Dom和diff算法</h3><p><strong>虚拟Dom</strong></p><p>通过JS来生成一个<code>AST</code>节点树，用<code>JS</code>的计算性能来换取操作<code>DOM</code>所消耗的性能，尽可能少的操作<code>DOM</code>，操作JS是非常快的</p><p><strong>diff算法</strong></p><p>忘了就看，文字一时半会儿说不明白</p><h3 id="五、Ref全家桶"><a href="#五、Ref全家桶" class="headerlink" title="五、Ref全家桶"></a>五、Ref全家桶</h3>]]></content>
       
       
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+            <tag> Vue </tag>
+            
+        </tags>
       
     </entry>
     
